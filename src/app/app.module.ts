@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/http/cli';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { ElectronService } from './providers/electron.service'
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     NgbModule,
     AppRoutingModule
   ],

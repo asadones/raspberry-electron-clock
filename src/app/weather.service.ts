@@ -2,6 +2,30 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
+interface WeatherCoord {
+  lon: number;
+  lat: number;
+}
+
+interface WeatherClouds {
+  all: number;
+}
+
+interface WeatherMain {
+  humidity: number;
+  pressure: number;
+  temp: number;
+  temp_min: number;
+  temp_max: number;
+}
+
+export interface WeatherResponse {
+  clouds: WeatherClouds;
+  coord: WeatherCoord;
+  main: WeatherMain;
+  name: string;
+}
+
 export class Weather {
   temperature: number;
   cloudiness: number;
@@ -14,22 +38,23 @@ export class Weather {
     this.cloudiness = cloudiness;
   }
 
-}
+  public static fromWeatherResponse(response: WeatherResponse) {
+    return new this(
+      response.main.temp,
+      response.clouds.all
+    );
+  }
 
+}
 
 @Injectable()
 export class WeatherService {
-  api_key: string;
-  http: HttpClient;
   url = 'http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=';
 
-  constructor(http: HttpClient) {
-    this.api_key = process.env.WEATHER_API_KEY;
-    this.http = HttpClient;
-  }
+  constructor(private http: HttpClient) { }
 
   getWeather() {
-    return this.http.get(this.url + process.env.WEATHER_API_KEY);
+    return this.http.get<WeatherResponse>(this.url + process.env.WEATHER_API_KEY)
   }
 
 }
