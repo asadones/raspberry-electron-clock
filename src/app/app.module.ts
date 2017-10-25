@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './routing.module';
 
 import { ElectronService } from './providers/electron.service'
 
@@ -18,7 +19,8 @@ import { ElectronService } from './providers/electron.service'
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgbModule
+    NgbModule,
+    AppRoutingModule
   ],
   providers: [
     ElectronService
