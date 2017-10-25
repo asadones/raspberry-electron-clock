@@ -1,3 +1,37 @@
-<div class="row justify-content-center align-self-center">
-  <h4>App Works!</h4>
+<div class="container-fluid d-flex h-100">
+  <div class="row h-100 w-100">
+    <div class="col-8 my-auto">
+      <h4 class="time text-center">
+        {{ currentDateTime | date:"HH:MM"}}<small>{{ currentDateTime | date:"ss" }}</small>
+      </h4>
+    </div>
+    <div class="col-4 my-auto">
+      <div class="row h-100">
+        <div class="col-12">
+          <div class="card weather">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fa fa-sun-o"></i>
+                Weather
+              </h4>
+              <p class="card-text">We do need to do something here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row h-100">
+        <div class="col-12">
+          <div class="card alarms">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fa fa-bell"></i>
+                Alarms
+              </h4>
+              <p class="card-text">We do need to do something here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
