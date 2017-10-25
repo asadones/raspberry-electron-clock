@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import * as sinon from 'sinon';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home.component';
+
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,7 +13,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [HomeComponent],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   }));
@@ -38,6 +41,17 @@ describe('HomeComponent', () => {
   it('should increment currentDateTime over time', () => {
     clock.tick(1000);
     expect(component.currentDateTime).toEqual(1000);
+  });
+
+  it('should init currentWeather', () => {
+    expect(component.currentWeather).toBeTruthy();
+  });
+
+  it('should update currentWeather every hour', () => {
+    let stub = sinon.stub(component, 'setWeather');
+    clock.tick(60 * 60 * 1000 + 1);
+    expect(stub.called).toBe(true);
+    stub.restore();
   });
 
   afterEach(() => {

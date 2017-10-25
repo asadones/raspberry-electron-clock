@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing.module';
 
 import { ElectronService } from './providers/electron.service'
+import { WeatherService } from './providers/weather.service'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ElectronService } from './providers/electron.service'
     AppRoutingModule
   ],
   providers: [
-    ElectronService
+    ElectronService,
+    WeatherService
   ],
   bootstrap: [AppComponent]
 })
