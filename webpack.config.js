@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const ConcatPlugin = require('webpack-concat-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, InsertConcatAssetsWebpackPlugin } = require('@angular/cli/plugins/webpack');
@@ -43,18 +44,23 @@ function getPlugins() {
 
   plugins.push(new NoEmitOnErrorsPlugin());
 
-if(scripts.length > 0){
-  plugins.push(new ConcatPlugin({
-    "uglify": false,
-    "sourceMap": true,
-    "name": "scripts",
-    "fileName": "[name].bundle.js",
-    "filesToConcat": scripts
+  plugins.push(new Dotenv({
+    path: './.env',
+    safe: true
   }));
-  plugins.push(new InsertConcatAssetsWebpackPlugin([
-    "scripts"
-  ]));
-}
+
+  if(scripts.length > 0){
+    plugins.push(new ConcatPlugin({
+      "uglify": false,
+      "sourceMap": true,
+      "name": "scripts",
+      "fileName": "[name].bundle.js",
+      "filesToConcat": scripts
+    }));
+    plugins.push(new InsertConcatAssetsWebpackPlugin([
+      "scripts"
+    ]));
+  }
 
   plugins.push(new GlobCopyWebpackPlugin({
     "patterns": [

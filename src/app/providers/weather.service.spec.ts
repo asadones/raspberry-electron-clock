@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as sinon from 'sinon';
 
-import { Weather, WeatherResponse, WeatherService } from './weather.service';
+import { Weather, WeatherItem, WeatherResponse, WeatherService } from './weather.service';
 
 
 let mockData = {
@@ -72,9 +72,8 @@ describe('WeatherService', () => {
   it('have getWeather that return the current weather', (done) => {
     service.getWeather().subscribe(
       (result: any) => {
-        expect(result.main.temp).toEqual(mockData.main.temp);
-        expect(result.clouds.all).toEqual(mockData.clouds.all);
-        expect(result.name).toEqual(mockData.name);
+        expect(result.temperature).toEqual(mockData.main.temp);
+        expect(result.cloudiness).toEqual(mockData.clouds.all);
         done();
       });
       let request = httpMock.expectOne(
@@ -86,24 +85,41 @@ describe('WeatherService', () => {
       httpMock.verify();
   });
 
+  it('should handle HTTP errors properly', (done) => {
+    service.getWeather().subscribe(
+      (result: any) => {
+        expect(result.error).toBe(true);
+        done();
+      });
+    let request = httpMock.expectOne(
+      'http://api.openweathermap.org/data/2.5/weather?'
+      + 'apikey=abcdef123456&'
+      + 'units=metric&'
+      + 'q=Paris,fr');
+    request.error(new ErrorEvent('Error from Weather API'));
+    httpMock.verify();
+  });
+
 });
 
 describe('Weather', () => {
   let weather;
 
   beforeEach(() => {
-    weather = new Weather(18, 57);
+    weather = new Weather(18, 57, <WeatherItem>{main: 'Fog', description: 'fog'});
   });
 
   it('should be created', () => {
     expect(weather).toBeTruthy();
     expect(weather.temperature).toEqual(18);
     expect(weather.cloudiness).toEqual(57);
+    expect(weather.main).toEqual('Fog');
+    expect(weather.description).toEqual('fog');
   });
 
   it('should not accept values < 0 or > 100 for cloudiness', () => {
-    expect(() => {new Weather(5, -4)}).toThrow('Unvalid cloudiness.');
-    expect(() => {new Weather(5, 110)}).toThrow('Unvalid cloudiness.');
+    expect(() => {new Weather(5, -4, null)}).toThrow('Unvalid cloudiness.');
+    expect(() => {new Weather(5, 110, null)}).toThrow('Unvalid cloudiness.');
   });
 
   it('is created properly from WeatherResponse', () => {

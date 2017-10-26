@@ -18,6 +18,9 @@
                 The current temperature is {{ currentWeather.temperature }}°C.<br/>
                 The cloudiness is {{ currentWeather.cloudiness }}%.
               </p>
+              <p class="card-text text-center" *ngIf="!currentWeather">
+                <i class="fa fa-spin fa-spinning"></i>
+              </p>
             </div>
           </div>
         </div>

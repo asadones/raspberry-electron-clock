@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { Weather, WeatherResponse, WeatherService } from '../providers/weather.service';
+import { Weather, WeatherService } from '../providers/weather.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Weather, WeatherResponse, WeatherService } from '../providers/weather.s
 })
 export class HomeComponent implements OnInit {
   currentDateTime: number;
+  currentWeatherObs: Observable<any>;
   currentWeather: any;
 
   constructor(private weatherService: WeatherService) {
@@ -21,10 +23,9 @@ export class HomeComponent implements OnInit {
   }
 
   setWeather() {
-    this.weatherService.getWeather()
-      .subscribe((response: WeatherResponse) => {
-        this.currentWeather = Weather.fromWeatherResponse(response);
-      });
+    this.currentWeatherObs = this.weatherService.getWeather();
+    this.currentWeatherObs.subscribe(
+      (weather: Weather) => {this.currentWeather = weather});
   }
 
   ngOnInit() {
