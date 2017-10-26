@@ -14,8 +14,8 @@
                 <i class="fa fa-sun-o"></i>
                 Weather
               </h4>
-              <p class="card-text">
-                The current temperature is {{ currentWeather.temperature }}.<br/>
+              <p class="card-text" *ngIf="currentWeather">
+                The current temperature is {{ currentWeather.temperature }}°C.<br/>
                 The cloudiness is {{ currentWeather.cloudiness }}%.
               </p>
             </div>

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     this.currentDateTime = Date.now();
     setInterval(() => {this.currentDateTime = Date.now()}, 1000);
     this.setWeather();
-    setInterval(() => {this.setWeather()}, 60*60*1000);
+    setInterval(() => {this.setWeather()}, 60*1000);
   }
 
   setWeather() {

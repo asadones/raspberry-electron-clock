@@ -43,13 +43,9 @@ describe('HomeComponent', () => {
     expect(component.currentDateTime).toEqual(1000);
   });
 
-  it('should init currentWeather', () => {
-    expect(component.currentWeather).toBeTruthy();
-  });
-
-  it('should update currentWeather every hour', () => {
+  it('should update currentWeather every minute', () => {
     let stub = sinon.stub(component, 'setWeather');
-    clock.tick(60 * 60 * 1000 + 1);
+    clock.tick(60 * 1000 + 1);
     expect(stub.called).toBe(true);
     stub.restore();
   });
