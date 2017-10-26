@@ -10,13 +10,19 @@
         <div class="col-12">
           <div class="card weather">
             <div class="card-body">
-              <h4 class="card-title">
-                <i class="fa fa-sun-o"></i>
-                Weather
+              <h4 class="card-title" *ngIf="currentWeather">
+                <i class="wi" [ngClass]="currentWeather.getIcon()"></i>
+                <i class="fa fa-spin fa-spinning"></i>
+                {{ currentWeather.main }}
               </h4>
+                <h4 class="card-title" *ngIf="!currentWeather">
+                  <i class="fa fa-spin fa-spinning"></i>
+                  Weather
+                </h4>
               <p class="card-text" *ngIf="currentWeather">
-                The current temperature is {{ currentWeather.temperature }}°C.<br/>
-                The cloudiness is {{ currentWeather.cloudiness }}%.
+                Current: {{ currentWeather.description }},&nbsp;
+                <i class="wi wi-thermometer"></i> {{ currentWeather.temperature }}°C,&nbsp;
+                <i class="wi wi-cloud"></i> {{ currentWeather.cloudiness }}%
               </p>
               <p class="card-text text-center" *ngIf="!currentWeather">
                 <i class="fa fa-spin fa-spinning"></i>

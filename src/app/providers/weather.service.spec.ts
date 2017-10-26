@@ -128,4 +128,9 @@ describe('Weather', () => {
     expect(weather.cloudiness).toEqual(mockData.clouds.all);
   });
 
+  it('should get a wi icon from iconMapping', () => {
+    let weather = Weather.fromWeatherResponse(<WeatherResponse>mockData);
+    expect(weather.getIcon()).toEqual('wi-hail');
+  });
+
 });
