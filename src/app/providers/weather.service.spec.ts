@@ -72,7 +72,7 @@ describe('WeatherService', () => {
   it('have getWeather that return the current weather', (done) => {
     service.getWeather().subscribe(
       (result: any) => {
-        expect(result.temperature).toEqual(mockData.main.temp);
+        expect(result.temperature).toEqual(Math.round(mockData.main.temp));
         expect(result.cloudiness).toEqual(mockData.clouds.all);
         done();
       });
@@ -106,7 +106,7 @@ describe('Weather', () => {
   let weather;
 
   beforeEach(() => {
-    weather = new Weather(18, 57, <WeatherItem>{main: 'Fog', description: 'fog'});
+    weather = new Weather(18.26, 57, <WeatherItem>{main: 'Fog', description: 'fog'});
   });
 
   it('should be created', () => {
@@ -124,7 +124,7 @@ describe('Weather', () => {
 
   it('is created properly from WeatherResponse', () => {
     let weather = Weather.fromWeatherResponse(<WeatherResponse>mockData);
-    expect(weather.temperature).toEqual(mockData.main.temp);
+    expect(weather.temperature).toEqual(Math.round(mockData.main.temp));
     expect(weather.cloudiness).toEqual(mockData.clouds.all);
   });
 

@@ -66,7 +66,7 @@ export class Weather {
   weather_id: number;
 
   constructor(temperature: number, cloudiness: number, weather: WeatherItem) {
-    this.temperature = temperature;
+    this.temperature = Math.round(temperature);
     if (cloudiness < 0 || cloudiness > 100) {
       throw "Unvalid cloudiness."
     }
