@@ -14,7 +14,7 @@ if (fs.existsSync) {
   console.warn('The environment cannot be loaded. fs module not supported.');
 }
 
-interface WeatherCoord {
+interface Coordinates {
   lon: number;
   lat: number;
 }
@@ -46,16 +46,28 @@ export interface WeatherItem {
 export interface WeatherResponse {
   // General data
   cod: number;
+  coord: Coordinates;
   dt: number;
   name: string;
 
   // Weather data
   clouds: WeatherClouds;
-  coord: WeatherCoord;
   main: WeatherMain;
   visibility: number;
   weather: WeatherItem[];
   wind: WeatherWind;
+}
+
+interface City {
+  name: string;
+  coord: Coordinates;
+  country: string;
+}
+
+export interface ForecastResponse {
+  city: City;
+  cnt: number;
+  list: WeatherItem[];
 }
 
 export class Weather {
@@ -143,18 +155,26 @@ const iconMapping = {
 export class WeatherService {
   city = 'Paris,fr';
   units = 'metric';
-  url = 'http://api.openweathermap.org/data/2.5/weather';
+  baseUrl = 'http://api.openweathermap.org/data/2.5';
 
   constructor(private http: HttpClient) { }
 
-  getWeather() {
+  private getUrl(path: string) {
     let params = new URLSearchParams();
     params.set('apikey', process.env.WEATHER_API_KEY);
     params.set('units', this.units);
     params.set('q', this.city);
-    return this.http.get<WeatherResponse>(this.url + '?' + params.toString())
+    return this.baseUrl + path + '?' + params.toString();
+  }
+
+  getWeather() {
+    return this.http.get<WeatherResponse>(this.getUrl('/weather'))
       .map(data => Weather.fromWeatherResponse(data))
       .catch(err => { return Observable.of({error: true}) });
+  }
+
+  getForecast() {
+    return this.http.get<ForecastResponse>(this.getUrl('/forecast'));
   }
 
 }
