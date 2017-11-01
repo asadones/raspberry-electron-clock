@@ -77,10 +77,17 @@ export class Weather {
   description: string;
   weather_id: number;
 
+  public static fromWeatherResponse(response: WeatherResponse) {
+    return new this(
+      response.main.temp,
+      response.clouds.all,
+      response.weather[0]);
+  }
+
   constructor(temperature: number, cloudiness: number, weather: WeatherItem) {
     this.temperature = Math.round(temperature);
     if (cloudiness < 0 || cloudiness > 100) {
-      throw "Unvalid cloudiness."
+      throw new Error('Unvalid cloudiness.');
     }
     this.cloudiness = cloudiness;
     this.main = weather.main;
@@ -90,14 +97,6 @@ export class Weather {
 
   getIcon() {
     return iconMapping[this.weather_id];
-  }
-
-  public static fromWeatherResponse(response: WeatherResponse) {
-    return new this(
-      response.main.temp,
-      response.clouds.all,
-      response.weather[0]
-    );
   }
 
 }
@@ -160,7 +159,7 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   private getUrl(path: string) {
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     params.set('apikey', process.env.WEATHER_API_KEY);
     params.set('units', this.units);
     params.set('q', this.city);

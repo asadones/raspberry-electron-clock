@@ -5,7 +5,7 @@ import * as sinon from 'sinon';
 import { Weather, WeatherItem, WeatherResponse, WeatherService } from './weather.service';
 
 
-let mockData = {
+const mockData = {
   "coord": {
     "lon": -0.13,
     "lat": 51.51
@@ -135,7 +135,7 @@ let mockForecastData = {
 };
 
 describe('WeatherService', () => {
-  let api_key = 'abcdef123456';
+  const api_key = 'abcdef123456';
   let service: WeatherService;
   let httpMock: HttpTestingController;
 
@@ -164,7 +164,7 @@ describe('WeatherService', () => {
         expect(result.cloudiness).toEqual(mockData.clouds.all);
         done();
       });
-      let request = httpMock.expectOne(
+      const request = httpMock.expectOne(
         'http://api.openweathermap.org/data/2.5/weather?'
         + 'apikey=abcdef123456&'
         + 'units=metric&'
@@ -179,7 +179,7 @@ describe('WeatherService', () => {
         expect(result.error).toBe(true);
         done();
       });
-    let request = httpMock.expectOne(
+    const request = httpMock.expectOne(
       'http://api.openweathermap.org/data/2.5/weather?'
       + 'apikey=abcdef123456&'
       + 'units=metric&'
@@ -196,7 +196,7 @@ describe('WeatherService', () => {
         expect(result.list[0].main.temp).toEqual(285.31);
         done();
       });
-      let request = httpMock.expectOne(
+      const request = httpMock.expectOne(
         'http://api.openweathermap.org/data/2.5/forecast?'
         + 'apikey=abcdef123456&'
         + 'units=metric&'
@@ -223,19 +223,19 @@ describe('Weather', () => {
   });
 
   it('should not accept values < 0 or > 100 for cloudiness', () => {
-    expect(() => {new Weather(5, -4, null)}).toThrow('Unvalid cloudiness.');
-    expect(() => {new Weather(5, 110, null)}).toThrow('Unvalid cloudiness.');
+    expect(() => {new Weather(5, -4, null)}).toThrow(new Error('Unvalid cloudiness.'));
+    expect(() => {new Weather(5, 110, null)}).toThrow(new Error('Unvalid cloudiness.'));
   });
 
   it('is created properly from WeatherResponse', () => {
-    let weather = Weather.fromWeatherResponse(<WeatherResponse>mockData);
-    expect(weather.temperature).toEqual(Math.round(mockData.main.temp));
-    expect(weather.cloudiness).toEqual(mockData.clouds.all);
+    const weatherInst = Weather.fromWeatherResponse(<WeatherResponse>mockData);
+    expect(weatherInst.temperature).toEqual(Math.round(mockData.main.temp));
+    expect(weatherInst.cloudiness).toEqual(mockData.clouds.all);
   });
 
   it('should get a wi icon from iconMapping', () => {
-    let weather = Weather.fromWeatherResponse(<WeatherResponse>mockData);
-    expect(weather.getIcon()).toEqual('wi-hail');
+    const weatherInst = Weather.fromWeatherResponse(<WeatherResponse>mockData);
+    expect(weatherInst.getIcon()).toEqual('wi-hail');
   });
 
 });
