@@ -297,81 +297,12 @@ module.exports = {
         ]
       },
       {
-        "exclude": style_paths,
-        "test": /\.scss$|\.sass$/,
-        "loaders": [
-          "exports-loader?module.exports.toString()",
-          "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-          "postcss-loader",
-          "sass-loader"
-        ]
-      },
-      {
-        "exclude": style_paths,
-        "test": /\.less$/,
-        "loaders": [
-          "exports-loader?module.exports.toString()",
-          "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-          "postcss-loader",
-          "less-loader"
-        ]
-      },
-      {
-        "exclude": style_paths,
-        "test": /\.styl$/,
-        "loaders": [
-          "exports-loader?module.exports.toString()",
-          "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-          "postcss-loader",
-          "stylus-loader?{\"sourceMap\":false,\"paths\":[]}"
-        ]
-      },
-      {
         "include": style_paths,
         "test": /\.css$/,
         "loaders": ExtractTextPlugin.extract({
           "use": [
             "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
             "postcss-loader"
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
-      },
-      {
-        "include": style_paths,
-        "test": /\.scss$|\.sass$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [
-            "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-            "postcss-loader",
-            "sass-loader"
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
-      },
-      {
-        "include":style_paths,
-        "test": /\.less$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [
-            "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-            "postcss-loader",
-            "less-loader"
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
-      },
-      {
-        "include": style_paths,
-        "test": /\.styl$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [
-            "css-loader?{\"sourceMap\":false,\"importLoaders\":1}",
-            "postcss-loader",
-            "stylus-loader?{\"sourceMap\":false,\"paths\":[]}"
           ],
           "fallback": "style-loader",
           "publicPath": ""
