@@ -59,6 +59,7 @@ typings/
 
 # dist directory
 dist/
+distributions/
 
 # Vim swap files
 *.swap
