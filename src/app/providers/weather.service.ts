@@ -76,6 +76,7 @@ export class Weather {
   main: string;
   description: string;
   weather_id: number;
+  rain: number;
 
   public static fromWeatherResponse(response: WeatherResponse) {
     return new this(
@@ -90,8 +91,8 @@ export class Weather {
       throw new Error('Unvalid cloudiness.');
     }
     this.cloudiness = cloudiness;
-    this.main = weather.main;
     this.description = weather.description;
+    this.main = weather.main;
     this.weather_id = weather.id;
   }
 
@@ -99,6 +100,10 @@ export class Weather {
     return iconMapping[this.weather_id];
   }
 
+}
+
+export class Forecast {
+  items: Weather[];
 }
 
 const iconMapping = {
