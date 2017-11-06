@@ -24,7 +24,7 @@
     "test": "rimraf coverage && karma start ./karma.conf.js",
     "ci": "yarn ci:test && yarn ci:tslint",
     "ci:test": "rimraf coverage && ng test --code-coverage --single-run",
-    "ci:test:phantom": "yarn ci:test --browsers PhantomJS",
+    "ci:test:phantom": "rimraf coverage && ng test --code-coverage --single-run --browsers PhantomJS",
     "ci:tslint": "tslint -c ./tslint.json src/**/*.ts > reports/tslint.report",
     "ci:coverage": "codecov"
   },
