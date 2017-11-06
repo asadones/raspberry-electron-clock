@@ -7,8 +7,6 @@ web technologies but as a standalone application on top of Electron.
 
 More details on Electron [here](https://electron.atom.io).
 
-### Continuous Integration Status: ![CircleCI Status](https://circleci.com/gh/asadones/RBPAlarmClock-SA.svg?style=svg)
-
 Continuous integration on this project is powered by [CircleCI](https://circleci.com/gh/asadones/RBPAlarmClock-SA).
 
 ## Setup
