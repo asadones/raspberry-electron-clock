@@ -3,6 +3,7 @@
 [![Build](https://travis-ci.org/asadones/RBPAlarmClock-SA.svg?branch=master)](https://travis-ci.org/asadones/RBPAlarmClock-SA)
 [![CircleCI](https://circleci.com/gh/asadones/raspberry-electron-clock.svg?style=shield)](https://circleci.com/gh/asadones/raspberry-electron-clock)
 [![Codecov](https://codecov.io/github/asadones/raspberry-electron-clock/branch/master/graph/badge.svg)](https://codecov.io/github/asadones/raspberry-electron-clock/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 This project is an attempt to build a connected Alarm Clock for Raspberry Pi 3 Model B, based on
 web technologies but as a standalone application on top of Electron.
