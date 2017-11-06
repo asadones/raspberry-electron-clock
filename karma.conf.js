@@ -4,7 +4,7 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', 'phantomjs-shim', '@angular/cli'],
     plugins: [
       require('karma-chrome-launcher'),
       require('karma-coverage'),
@@ -12,6 +12,8 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-jasmine-html-reporter'),
       require('karma-junit-reporter'),
+      require('karma-phantomjs-launcher'),
+      require('karma-phantomjs-shim'),
       require('@angular/cli/plugins/karma')
     ],
     client:{
