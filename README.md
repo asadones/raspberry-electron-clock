@@ -9,6 +9,8 @@ web technologies but as a standalone application on top of Electron.
 
 More details on Electron [here](https://electron.atom.io).
 
+It also uses angular 4, with the inspiration of the [angular-electron](https://github.com/maximegris/angular-electron) bootstrap project.
+
 ## Setup
 
 In order to set the project up, install nodejs and npm. Then, run the following:
