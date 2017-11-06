@@ -6,11 +6,12 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
-      require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage'),
-      require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-jasmine'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-junit-reporter'),
       require('@angular/cli/plugins/karma')
     ],
     client:{
@@ -29,10 +30,14 @@ module.exports = function (config) {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
+    junitReporter: {
+      outputFile: 'junit.xml',
+      useBrowserName: false
+    },
     angularCli: {
       environment: 'dev'
     },
-    reporters: ['progress', 'coverage-istanbul', 'kjhtml'],
+    reporters: ['progress', 'junit', 'coverage-istanbul', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
