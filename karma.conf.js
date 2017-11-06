@@ -31,7 +31,7 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     junitReporter: {
-      outputDir: './junit/',
+      outputDir: './reports/junit/',
       outputFile: 'test-results.xml',
       useBrowserName: false
     },

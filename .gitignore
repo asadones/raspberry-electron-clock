@@ -64,6 +64,6 @@ distributions/
 # Vim swap files
 *.swap
 
-# Junit Report
-junit.xml
-junit/
+# CI reports
+reports/junit/
+reports/*.report
