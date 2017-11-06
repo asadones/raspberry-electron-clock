@@ -1,10 +1,11 @@
+/* tslint:disable:no-console */
 import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 
 @Component({
   selector: 'app-root',
+  styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
