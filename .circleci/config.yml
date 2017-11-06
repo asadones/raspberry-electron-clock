@@ -18,3 +18,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test:ci
+      - store_test_results:
+          path: ./junit
+      - store_artifacts:
+          path: ./junit

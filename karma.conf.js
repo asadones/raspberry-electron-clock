@@ -31,7 +31,8 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     junitReporter: {
-      outputFile: 'junit.xml',
+      outputDir: './junit/',
+      outputFile: 'test-results.xml',
       useBrowserName: false
     },
     angularCli: {
