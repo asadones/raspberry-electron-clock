@@ -19,6 +19,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn ci:test
       - run: yarn ci:tslint
+      - run: yarn ci:coverage -t $CODECOV_TOKEN
       - store_test_results:
           path: ./reports/junit
       - store_artifacts:

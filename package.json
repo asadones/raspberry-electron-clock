@@ -23,9 +23,10 @@
     "package:mac": "electron-packager dist --platform darwin --out distributions --overwrite",
     "test": "rimraf coverage && karma start ./karma.conf.js",
     "ci": "yarn ci:test && yarn ci:tslint",
-    "ci:test": "rimraf coverage && karma start ./karma.conf.js --single-run",
-    "ci:test:phantom": "rimraf coverage && karma start ./karma.conf.js --single-run --browsers PhantomJS",
-    "ci:tslint": "tslint -c ./tslint.json src/**/*.ts > reports/tslint.report"
+    "ci:test": "rimraf coverage && ng test --code-coverage --single-run",
+    "ci:test:phantom": "yarn ci:test --browsers PhantomJS",
+    "ci:tslint": "tslint -c ./tslint.json src/**/*.ts > reports/tslint.report",
+    "ci:coverage": "codecov"
   },
   "private": true,
   "dependencies": {
@@ -58,6 +59,7 @@
     "@types/jasmine": "2.5.54",
     "@types/node": "7.0.7",
     "autoprefixer": "7.1.4",
+    "codecov": "^3.0.0",
     "copyfiles": "1.2.0",
     "cross-env": "^5.1.1",
     "css-loader": "0.28.7",
