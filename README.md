@@ -1,13 +1,13 @@
 # Raspberry Pi Electron Alarm Clock
 
-![CircleCI Status](https://circleci.com/gh/asadones/RBPAlarmClock-SA.svg?style=shield)
+![CircleCI Status](https://circleci.com/gh/asadones/raspberry-electron-clock.svg?style=shield)
 
 This project is an attempt to build a connected Alarm Clock for Raspberry Pi 3 Model B, based on
 web technologies but as a standalone application on top of Electron.
 
 More details on Electron [here](https://electron.atom.io).
 
-Continuous integration on this project is powered by [CircleCI](https://circleci.com/gh/asadones/RBPAlarmClock-SA).
+Continuous integration on this project is powered by [CircleCI](https://circleci.com/gh/asadones/raspberry-electron-clock).
 
 ## Setup
 
@@ -15,7 +15,7 @@ In order to set the project up, install nodejs and npm. Then, run the following:
 
 ```
 npm i -g yarn
-git clone https://github.com/asadones/RBPAlarmClock-SA.git
+git clone https://github.com/asadones/raspberry-electron-clock.git
 cd RBPAlarmClock-SA
 yarn install
 ```
