@@ -22,7 +22,7 @@
     "package:linux:x64": "electron-packager dist --platform linux --arch x64 --out distributions --overwrite",
     "package:mac": "electron-packager dist --platform darwin --out distributions --overwrite",
     "test": "rimraf coverage && karma start ./karma.conf.js",
-    "test:once": "yarn test --single-run"
+    "test:ci": "rimraf coverage && karma start ./karma.conf.js --single-run"
   },
   "private": true,
   "dependencies": {
