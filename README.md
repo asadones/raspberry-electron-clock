@@ -1,5 +1,7 @@
 # Raspberry Pi Electron Alarm Clock
 
+![CircleCI Status](https://circleci.com/gh/asadones/RBPAlarmClock-SA.svg?style=shield)
+
 This project is an attempt to build a connected Alarm Clock for Raspberry Pi 3 Model B, based on
 web technologies but as a standalone application on top of Electron.
 
